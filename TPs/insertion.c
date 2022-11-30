@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 void insertionDansTableau(int **tableau, int nbElementsDansTableau, int valeurAInserer) {
     *tableau = realloc(*tableau, (nbElementsDansTableau + 1) * sizeof(int));

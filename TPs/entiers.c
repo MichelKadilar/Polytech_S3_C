@@ -9,7 +9,7 @@ int main(void) {
     while (i >= 0) {
         printf("saissiez un entier positif : ");
         scanf("%d", &i);
-        if(i >= 0){
+        if (i >= 0) {
             compteur++;
         }
     }
