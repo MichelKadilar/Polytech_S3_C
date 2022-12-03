@@ -11,16 +11,6 @@ struct element {
 };
 typedef struct element Element;
 
-void push_item(Element *stack, int value) {
-    stack->suivant = NULL; // 2 NULL
-    Element *element = (Element *) malloc(sizeof(Element));
-    if (element != NULL) {
-        element->valeur = value; // 5
-        element->suivant = stack; // 5 2 NULL
-        stack = element;
-    }
-}
-
 void print_stack(Element *liste) {
     if (liste != NULL) {
         printf("%d\n", liste->valeur);
@@ -28,9 +18,35 @@ void print_stack(Element *liste) {
     }
 }
 
+void push_item(Element **stack, int value) {
+    (*stack)->suivant = NULL;
+    Element *element = (Element *) malloc(sizeof(Element));
+    if (element != NULL) {
+        element->valeur = value;
+        element->suivant = *stack;
+        *stack = element;
+    }
+}
+
+void pop_item(Element **stack) {
+    *stack = (*stack)->suivant;
+}
+
+int top_value(Element **stack) {
+    return (*stack)->valeur;
+}
+
+
 int main(void) {
     Element *element = (Element *) malloc(sizeof(Element));
     element->valeur = 2;
-    push_item(element, 5);
+    push_item(&element, 5);
+    printf("Push :\n");
+    print_stack(element);
+    pop_item(&element);
+    printf("Pop :\n");
+    print_stack(element);
+    top_value(&element);
+    printf("Top value :\n");
     print_stack(element);
 }
